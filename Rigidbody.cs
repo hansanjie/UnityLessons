@@ -215,23 +215,15 @@ namespace UnityEngine
         public Vector3 GetRelativePointVelocity(Vector3 relativePoint);
         //
         // 摘要:
-        //     刚体在休眠
+        //     刚体是否在休眠
         public bool IsSleeping();
         //
         // 摘要:
-        //     Moves the kinematic Rigidbody towards position.
-        //
-        // 参数:
-        //   position:
-        //     Provides the new position for the Rigidbody object.
+        //    将运动刚体移向位置。
         public void MovePosition(Vector3 position);
         //
         // 摘要:
-        //     Rotates the rigidbody to rotation.
-        //
-        // 参数:
-        //   rot:
-        //     The new rotation for the Rigidbody.
+        //     将刚体旋转到某个四元数。
         public void MoveRotation(Quaternion rot);
         //
         // 摘要:
