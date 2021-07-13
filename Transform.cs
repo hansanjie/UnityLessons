@@ -19,43 +19,43 @@ namespace UnityEngine
 
         //
         // 摘要:
-        //     Position of the transform relative to the parent transform.
+        // 该物体相对于父物体为坐标原点相对应的坐标
         public Vector3 localPosition { get; set; }
         //
         // 摘要:
-        //     The rotation as Euler angles in degrees.
+        //     该物体在世界坐标系中的旋转角度.
         public Vector3 eulerAngles { get; set; }
         //
         // 摘要:
-        //     The rotation as Euler angles in degrees relative to the parent transform's rotation.
+        // 该物体相对于父物体为坐标原点相对应的坐标.
         public Vector3 localEulerAngles { get; set; }
         //
         // 摘要:
-        //     The red axis of the transform in world space.
+        //     在世界坐标系中红色坐标轴所对应的方向.
         public Vector3 right { get; set; }
         //
         // 摘要:
-        //     The green axis of the transform in world space.
+        //     在世界坐标系中绿色轴所对应的方向
         public Vector3 up { get; set; }
         //
         // 摘要:
-        //     The blue axis of the transform in world space.
+        //     在世界坐标系中蓝色轴所对应的方向
         public Vector3 forward { get; set; }
         //
         // 摘要:
-        //     The rotation of the transform in world space stored as a Quaternion.
+        //   该物体在世界坐标系中旋转所对应的四元数.
         public Quaternion rotation { get; set; }
         //
         // 摘要:
-        //     The world space position of the Transform.
+        //    该物体在世界坐标系中的坐标.
         public Vector3 position { get; set; }
         //
         // 摘要:
-        //     The rotation of the transform relative to the transform rotation of the parent.
+        //     该物体在父物体坐标系旋转所对应的四元数.
         public Quaternion localRotation { get; set; }
         //
         // 摘要:
-        //     The parent of the transform.
+        //     该物体的父物体的Transform.
         public Transform parent { get; set; }
         //
         // 摘要:
@@ -67,15 +67,15 @@ namespace UnityEngine
         public Matrix4x4 localToWorldMatrix { get; }
         //
         // 摘要:
-        //     Returns the topmost transform in the hierarchy.
+        //     获得Herachy面板中该物体最上层的物体的Transform.
         public Transform root { get; }
         //
         // 摘要:
-        //     The number of children the parent Transform has.
+        //     获得该物体子物体的数量.
         public int childCount { get; }
         //
         // 摘要:
-        //     The global scale of the object (Read Only).
+        //     获得该物体在世界坐标系中的缩放值(只读).
         public Vector3 lossyScale { get; }
         //
         // 摘要:
@@ -84,7 +84,7 @@ namespace UnityEngine
         public bool hasChanged { get; set; }
         //
         // 摘要:
-        //     The scale of the transform relative to the parent.
+        //     该物体对应父物体坐标系的缩放值.
         public Vector3 localScale { get; set; }
         //
         // 摘要:
@@ -97,7 +97,7 @@ namespace UnityEngine
 
         //
         // 摘要:
-        //     Unparents all children.
+        //     解除子物体的父子关系.
         [FreeFunction("DetachChildren", HasExplicitThis = true)]
         public void DetachChildren();
         //
@@ -109,7 +109,7 @@ namespace UnityEngine
         //     Name of child to be found.
         //
         // 返回结果:
-        //     The returned child transform or null if no child is found.
+        //     通过名称查找Hierarchy面板中Transform
         public Transform Find(string n);
         [Obsolete("FindChild has been deprecated. Use Find instead (UnityUpgradable) -> Find([mscorlib] System.String)", false)]
         public Transform FindChild(string n);
@@ -122,7 +122,7 @@ namespace UnityEngine
         //     Index of the child transform to return. Must be smaller than Transform.childCount.
         //
         // 返回结果:
-        //     Transform child by index.
+        //     通过子物体的序号获得该子物体.
         [FreeFunction("GetChild", HasExplicitThis = true)]
         [NativeThrows]
         public Transform GetChild(int index);
@@ -132,7 +132,7 @@ namespace UnityEngine
         public IEnumerator GetEnumerator();
         //
         // 摘要:
-        //     Gets the sibling index.
+        //获得该物体在父物体中的子物体序列的序号.
         public int GetSiblingIndex();
         //
         // 摘要:
@@ -208,7 +208,7 @@ namespace UnityEngine
         //     Object to point towards.
         //
         //   worldUp:
-        //     Vector specifying the upward direction.
+        //     通过旋转，物体的蓝色坐标轴指向某个物体.
         public void LookAt(Transform target, [DefaultValue("Vector3.up")] Vector3 worldUp);
         //
         // 摘要:
@@ -243,6 +243,7 @@ namespace UnityEngine
         //   worldUp:
         //     Vector specifying the upward direction.
         public void LookAt(Transform target);
+        //相对与自身坐标，该物体在三个轴向上旋转某个角度
         public void Rotate(float xAngle, float yAngle, float zAngle);
         //
         // 摘要:
@@ -336,7 +337,7 @@ namespace UnityEngine
         //     If true, the parent-relative position, scale and rotation are modified such that
         //     the object keeps the same world space position, rotation and scale as before.
         //
-        //   p:
+        //  将该物体设为参数p的子物体
         public void SetParent(Transform p);
         //
         // 摘要:
@@ -353,22 +354,9 @@ namespace UnityEngine
         //   p:
         [FreeFunction("SetParent", HasExplicitThis = true)]
         public void SetParent(Transform parent, bool worldPositionStays);
-        //
-        // 摘要:
-        //     Sets the world space position and rotation of the Transform component.
-        //
-        // 参数:
-        //   position:
-        //
-        //   rotation:
+        //设置该物体在世界坐标系中的位置和旋转（四元数）
         public void SetPositionAndRotation(Vector3 position, Quaternion rotation);
-        //
-        // 摘要:
-        //     Sets the sibling index.
-        //
-        // 参数:
-        //   index:
-        //     Index to set.
+        //将该物体移动到父物体某个子物体的位置
         public void SetSiblingIndex(int index);
         //
         // 摘要:
@@ -390,32 +378,16 @@ namespace UnityEngine
         public Vector3 TransformDirection(Vector3 direction);
         //
         // 摘要:
-        //     Transforms the position x, y, z from local space to world space.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
+        //     将该物体本地坐标的X值，Y值，Z值组成的坐标转化成世界坐标
         public Vector3 TransformPoint(float x, float y, float z);
         //
         // 摘要:
-        //     Transforms position from local space to world space.
-        //
-        // 参数:
-        //   position:
+        //     将该物体本地坐标的点转化成世界坐标
         public Vector3 TransformPoint(Vector3 position);
         //
         // 摘要:
         //     Transforms vector x, y, z from local space to world space.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
+        
         public Vector3 TransformVector(float x, float y, float z);
         //
         // 摘要:
@@ -440,26 +412,11 @@ namespace UnityEngine
         public void Translate(float x, float y, float z);
         //
         // 摘要:
-        //     Moves the transform by x along the x axis, y along the y axis, and z along the
-        //     z axis.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
-        //
-        //   relativeTo:
+        //    通过三个轴向的大小移动相对于物体的距离
         public void Translate(float x, float y, float z, [DefaultValue("Space.Self")] Space relativeTo);
         //
         // 摘要:
-        //     Moves the transform in the direction and distance of translation.
-        //
-        // 参数:
-        //   translation:
-        //
-        //   relativeTo:
+        //     相对于某个物体方向上，移动该物体
         public void Translate(Vector3 translation);
         //
         // 摘要:
