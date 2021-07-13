@@ -18,53 +18,30 @@ namespace UnityEngine
     [UsedByNativeCode]
     public sealed class GameObject : Object
     {
-        //
-        // 摘要:
-        //     Creates a new game object, named name.
-        //
-        // 参数:
-        //   name:
-        //     The name that the GameObject is created with.
-        //
-        //   components:
-        //     A list of Components to add to the GameObject on creation.
+        
         public GameObject();
         //
         // 摘要:
-        //     Creates a new game object, named name.
-        //
-        // 参数:
-        //   name:
-        //     The name that the GameObject is created with.
-        //
-        //   components:
-        //     A list of Components to add to the GameObject on creation.
+        //     通过名称新建一个游戏物体.
         public GameObject(string name);
         //
         // 摘要:
-        //     Creates a new game object, named name.
-        //
-        // 参数:
-        //   name:
-        //     The name that the GameObject is created with.
-        //
-        //   components:
-        //     A list of Components to add to the GameObject on creation.
+        //     通过名称和组件列表新建游戏物体.
         public GameObject(string name, params Type[] components);
 
         //
         // 摘要:
-        //     The layer the game object is in.
+        //     游戏物体所在的层.
         public int layer { get; set; }
         [Obsolete("GameObject.active is obsolete. Use GameObject.SetActive(), GameObject.activeSelf or GameObject.activeInHierarchy.")]
         public bool active { get; set; }
         //
         // 摘要:
-        //     The local active state of this GameObject. (Read Only)
+        //     该游戏物体在inspector上是否激活
         public bool activeSelf { get; }
         //
         // 摘要:
-        //     Defines whether the GameObject is active in the Scene.
+        //     该游戏物体在场景中是否激活.
         public bool activeInHierarchy { get; }
         //
         // 摘要:
@@ -72,11 +49,11 @@ namespace UnityEngine
         public bool isStatic { get; set; }
         //
         // 摘要:
-        //     The tag of this game object.
+        //     该游戏物体的标签.
         public string tag { get; set; }
         //
         // 摘要:
-        //     Scene that the GameObject is part of.
+        //     该游戏物体是否是scene的一部分.
         public Scene scene { get; }
         public GameObject gameObject { get; }
         //
@@ -189,49 +166,29 @@ namespace UnityEngine
 
         //
         // 摘要:
-        //     Creates a game object with a primitive mesh renderer and appropriate collider.
-        //
-        // 参数:
-        //   type:
-        //     The type of primitive object to create.
+        //   创建基础的游戏物体，并且该游戏物体有碰撞体组件
         [FreeFunction("GameObjectBindings::CreatePrimitive")]
         public static GameObject CreatePrimitive(PrimitiveType type);
         //
         // 摘要:
-        //     Finds a GameObject by name and returns it.
-        //
-        // 参数:
-        //   name:
+        //     通过游戏物体的名称查找游戏物体
         [FreeFunction(Name = "GameObjectBindings::Find")]
         public static GameObject Find(string name);
         //
         // 摘要:
-        //     Returns a list of active GameObjects tagged tag. Returns empty array if no GameObject
-        //     was found.
-        //
-        // 参数:
-        //   tag:
-        //     The name of the tag to search GameObjects for.
+        //     通过标签查找含有此标签的所有的游戏物体
         [FreeFunction(Name = "GameObjectBindings::FindGameObjectsWithTag", ThrowsException = true)]
         public static GameObject[] FindGameObjectsWithTag(string tag);
         [FreeFunction(Name = "GameObjectBindings::FindGameObjectWithTag", ThrowsException = true)]
         public static GameObject FindGameObjectWithTag(string tag);
         //
         // 摘要:
-        //     Returns one active GameObject tagged tag. Returns null if no GameObject was found.
-        //
-        // 参数:
-        //   tag:
-        //     The tag to search for.
+        //     通过标签查找并返回一个含有该标签的物体
         public static GameObject FindWithTag(string tag);
         public T AddComponent<T>() where T : Component;
         //
         // 摘要:
-        //     Adds a component class of type componentType to the game object. C# Users can
-        //     use a generic version.
-        //
-        // 参数:
-        //   componentType:
+        //     根据组件的类型给游戏物体添加标签
         [TypeInferenceRule(TypeInferenceRules.TypeReferencedByFirstArgument)]
         public Component AddComponent(Type componentType);
         //
