@@ -227,24 +227,18 @@ namespace UnityEngine
         public void MoveRotation(Quaternion rot);
         //
         // 摘要:
-        //     Reset the center of mass of the rigidbody.
+        //    重置刚体的质心。
         public void ResetCenterOfMass();
         //
         // 摘要:
-        //     Reset the inertia tensor value and rotation.
+        //    重置惯性张量值和旋转。
         public void ResetInertiaTensor();
         //
         // 摘要:
-        //     Sets the mass based on the attached colliders assuming a constant density.
-        //
-        // 参数:
-        //   density:
+        //     假设密度恒定，根据附加的碰撞器设置质量。
         public void SetDensity(float density);
-        [Obsolete("Use Rigidbody.maxAngularVelocity instead.")]
-        public void SetMaxAngularVelocity(float a);
-        //
         // 摘要:
-        //     Forces a rigidbody to sleep at least one frame.
+        //     强制刚体休眠至少一帧。
         public void Sleep();
         [ExcludeFromDocs]
         public bool SweepTest(Vector3 direction, out RaycastHit hitInfo);
@@ -255,26 +249,13 @@ namespace UnityEngine
         public RaycastHit[] SweepTestAll(Vector3 direction, float maxDistance);
         //
         // 摘要:
-        //     Like Rigidbody.SweepTest, but returns all hits.
-        //
-        // 参数:
-        //   direction:
-        //     The direction into which to sweep the rigidbody.
-        //
-        //   maxDistance:
-        //     The length of the sweep.
-        //
-        //   queryTriggerInteraction:
-        //     Specifies whether this query should hit Triggers.
-        //
-        // 返回结果:
-        //     An array of all colliders hit in the sweep.
+        //     类似于 Rigidbody.SweepTest，但返回所有命中。。
         public RaycastHit[] SweepTestAll(Vector3 direction, [DefaultValue("Mathf.Infinity")] float maxDistance, [DefaultValue("QueryTriggerInteraction.UseGlobal")] QueryTriggerInteraction queryTriggerInteraction);
         [ExcludeFromDocs]
         public RaycastHit[] SweepTestAll(Vector3 direction);
         //
         // 摘要:
-        //     Forces a rigidbody to wake up.
+        //     强制刚体唤醒。
         public void WakeUp();
     }
 }
