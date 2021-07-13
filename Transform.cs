@@ -103,9 +103,7 @@ namespace UnityEngine
         //
         // 摘要:        
         //     通过名称查找Hierarchy面板中Transform
-        public Transform Find(string n);
-        [Obsolete("FindChild has been deprecated. Use Find instead (UnityUpgradable) -> Find([mscorlib] System.String)", false)]
-        public Transform FindChild(string n);
+        public Transform Find(string n);        
         //
         // 摘要:        
         //     通过子物体的序号获得该子物体.
