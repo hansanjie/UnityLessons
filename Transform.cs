@@ -101,27 +101,13 @@ namespace UnityEngine
         [FreeFunction("DetachChildren", HasExplicitThis = true)]
         public void DetachChildren();
         //
-        // 摘要:
-        //     Finds a child by n and returns it.
-        //
-        // 参数:
-        //   n:
-        //     Name of child to be found.
-        //
-        // 返回结果:
+        // 摘要:        
         //     通过名称查找Hierarchy面板中Transform
         public Transform Find(string n);
         [Obsolete("FindChild has been deprecated. Use Find instead (UnityUpgradable) -> Find([mscorlib] System.String)", false)]
         public Transform FindChild(string n);
         //
-        // 摘要:
-        //     Returns a transform child by index.
-        //
-        // 参数:
-        //   index:
-        //     Index of the child transform to return. Must be smaller than Transform.childCount.
-        //
-        // 返回结果:
+        // 摘要:        
         //     通过子物体的序号获得该子物体.
         [FreeFunction("GetChild", HasExplicitThis = true)]
         [NativeThrows]
@@ -136,112 +122,44 @@ namespace UnityEngine
         public int GetSiblingIndex();
         //
         // 摘要:
-        //     Transforms a direction from world space to local space. The opposite of Transform.TransformDirection.
-        //
-        // 参数:
-        //   direction:
+        //     Transforms a direction from world space to local space. The opposite of Transform.TransformDirection.        
         public Vector3 InverseTransformDirection(Vector3 direction);
         //
-        // 摘要:
-        //     Transforms the direction x, y, z from world space to local space. The opposite
-        //     of Transform.TransformDirection.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
+        // 摘要:        
         public Vector3 InverseTransformDirection(float x, float y, float z);
         //
         // 摘要:
-        //     Transforms the position x, y, z from world space to local space. The opposite
-        //     of Transform.TransformPoint.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
         public Vector3 InverseTransformPoint(float x, float y, float z);
         //
         // 摘要:
-        //     Transforms position from world space to local space.
-        //
-        // 参数:
-        //   position:
+        //     将点从世界坐标转换成该物体的本地坐标.
         public Vector3 InverseTransformPoint(Vector3 position);
         //
         // 摘要:
-        //     Transforms a vector from world space to local space. The opposite of Transform.TransformVector.
-        //
-        // 参数:
-        //   vector:
         public Vector3 InverseTransformVector(Vector3 vector);
         //
         // 摘要:
-        //     Transforms the vector x, y, z from world space to local space. The opposite of
-        //     Transform.TransformVector.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
         public Vector3 InverseTransformVector(float x, float y, float z);
         //
         // 摘要:
-        //     Is this transform a child of parent?
-        //
-        // 参数:
-        //   parent:
+        //      返回该物体是否为特定物体的子物体
         [FreeFunction("Internal_IsChildOrSameTransform", HasExplicitThis = true)]
         public bool IsChildOf([NotNull] Transform parent);
         //
         // 摘要:
-        //     Rotates the transform so the forward vector points at target's current position.
-        //
-        // 参数:
-        //   target:
-        //     Object to point towards.
-        //
-        //   worldUp:
         //     通过旋转，物体的蓝色坐标轴指向某个物体.
         public void LookAt(Transform target, [DefaultValue("Vector3.up")] Vector3 worldUp);
         //
         // 摘要:
-        //     Rotates the transform so the forward vector points at worldPosition.
-        //
-        // 参数:
-        //   worldPosition:
-        //     Point to look at.
-        //
-        //   worldUp:
-        //     Vector specifying the upward direction.
+        //     Rotates the transform so the forward vector points at worldPosition.        
         public void LookAt(Vector3 worldPosition, [DefaultValue("Vector3.up")] Vector3 worldUp);
         //
         // 摘要:
-        //     Rotates the transform so the forward vector points at worldPosition.
-        //
-        // 参数:
-        //   worldPosition:
-        //     Point to look at.
-        //
-        //   worldUp:
-        //     Vector specifying the upward direction.
+        //     Rotates the transform so the forward vector points at worldPosition
         public void LookAt(Vector3 worldPosition);
         //
         // 摘要:
         //     Rotates the transform so the forward vector points at target's current position.
-        //
-        // 参数:
-        //   target:
-        //     Object to point towards.
-        //
-        //   worldUp:
-        //     Vector specifying the upward direction.
         public void LookAt(Transform target);
         //相对与自身坐标，该物体在三个轴向上旋转某个角度
         public void Rotate(float xAngle, float yAngle, float zAngle);
@@ -249,70 +167,24 @@ namespace UnityEngine
         // 摘要:
         //     Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x
         //     degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that
-        //     order).
-        //
-        // 参数:
-        //   eulers:
-        //     The rotation to apply.
-        //
-        //   relativeTo:
-        //     Determines whether to rotate the GameObject either locally to the GameObject
-        //     or relative to the Scene in world space.
+        //     order).        //
         public void Rotate(Vector3 eulers, [DefaultValue("Space.Self")] Space relativeTo);
         public void Rotate(Vector3 eulers);
         //
         // 摘要:
         //     Applies a rotation of zAngle degrees around the z axis, xAngle degrees around
-        //     the x axis, and yAngle degrees around the y axis (in that order).
-        //
-        // 参数:
-        //   relativeTo:
-        //     Determines whether to rotate the GameObject either is locally to the GameObject
-        //     or relative to the Scene in world space.
-        //
-        //   xAngle:
-        //     Degrees to rotate the GameObject around the X axis.
-        //
-        //   yAngle:
-        //     Degrees to rotate the GameObject around the Y axis.
-        //
-        //   zAngle:
-        //     Degrees to rotate the GameObject around the Z axis.
+        //     the x axis, and yAngle degrees around the y axis (in that order).        
         public void Rotate(float xAngle, float yAngle, float zAngle, [DefaultValue("Space.Self")] Space relativeTo);
         //
         // 摘要:
         //     Rotates the object around the given axis by the number of degrees defined by
         //     the given angle.
-        //
-        // 参数:
-        //   angle:
-        //     The degrees of rotation to apply.
-        //
-        //   axis:
-        //     The axis to apply rotation to.
-        //
-        //   relativeTo:
-        //     Determines whether to rotate the GameObject either locally to the GameObject
-        //     or relative to the Scene in world space.
         public void Rotate(Vector3 axis, float angle, [DefaultValue("Space.Self")] Space relativeTo);
         public void Rotate(Vector3 axis, float angle);
         //
-        // 摘要:
-        //     Rotates the transform about axis passing through point in world coordinates by
-        //     angle degrees.
-        //
-        // 参数:
-        //   point:
-        //
-        //   axis:
-        //
-        //   angle:
+        // 摘要:        
         public void RotateAround(Vector3 point, Vector3 axis, float angle);
-        //
-        // 参数:
-        //   axis:
-        //
-        //   angle:
+        
         [Obsolete("warning use Transform.Rotate instead.")]
         public void RotateAround(Vector3 axis, float angle);
         [Obsolete("warning use Transform.Rotate instead.")]
@@ -326,32 +198,12 @@ namespace UnityEngine
         //     Move the transform to the end of the local transform list.
         public void SetAsLastSibling();
         //
-        // 摘要:
-        //     Set the parent of the transform.
-        //
-        // 参数:
-        //   parent:
-        //     The parent Transform to use.
-        //
-        //   worldPositionStays:
-        //     If true, the parent-relative position, scale and rotation are modified such that
-        //     the object keeps the same world space position, rotation and scale as before.
-        //
+        // 摘要:        
         //  将该物体设为参数p的子物体
         public void SetParent(Transform p);
         //
         // 摘要:
-        //     Set the parent of the transform.
-        //
-        // 参数:
-        //   parent:
-        //     The parent Transform to use.
-        //
-        //   worldPositionStays:
-        //     If true, the parent-relative position, scale and rotation are modified such that
-        //     the object keeps the same world space position, rotation and scale as before.
-        //
-        //   p:
+        //     Set the parent of the transform.        
         [FreeFunction("SetParent", HasExplicitThis = true)]
         public void SetParent(Transform parent, bool worldPositionStays);
         //设置该物体在世界坐标系中的位置和旋转（四元数）
@@ -360,21 +212,11 @@ namespace UnityEngine
         public void SetSiblingIndex(int index);
         //
         // 摘要:
-        //     Transforms direction x, y, z from local space to world space.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
+        //     Transforms direction x, y, z from local space to world space.        
         public Vector3 TransformDirection(float x, float y, float z);
         //
         // 摘要:
-        //     Transforms direction from local space to world space.
-        //
-        // 参数:
-        //   direction:
+        //     Transforms direction from local space to world space.        
         public Vector3 TransformDirection(Vector3 direction);
         //
         // 摘要:
@@ -399,16 +241,7 @@ namespace UnityEngine
         //
         // 摘要:
         //     Moves the transform by x along the x axis, y along the y axis, and z along the
-        //     z axis.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
-        //
-        //   relativeTo:
+        //     z axis.        
         public void Translate(float x, float y, float z);
         //
         // 摘要:
@@ -421,34 +254,15 @@ namespace UnityEngine
         //
         // 摘要:
         //     Moves the transform in the direction and distance of translation.
-        //
-        // 参数:
-        //   translation:
-        //
-        //   relativeTo:
         public void Translate(Vector3 translation, [DefaultValue("Space.Self")] Space relativeTo);
         //
         // 摘要:
         //     Moves the transform by x along the x axis, y along the y axis, and z along the
         //     z axis.
-        //
-        // 参数:
-        //   x:
-        //
-        //   y:
-        //
-        //   z:
-        //
-        //   relativeTo:
         public void Translate(float x, float y, float z, Transform relativeTo);
         //
         // 摘要:
         //     Moves the transform in the direction and distance of translation.
-        //
-        // 参数:
-        //   translation:
-        //
-        //   relativeTo:
         public void Translate(Vector3 translation, Transform relativeTo);
     }
 }
