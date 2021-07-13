@@ -11,11 +11,8 @@ namespace UnityEngine
     [RequireComponent(typeof(Transform))]
     public class Rigidbody : Component
     {
+        //刚体
         public Rigidbody();
-
-        [Obsolete("Please use Rigidbody.solverVelocityIterations instead. (UnityUpgradable) -> solverVelocityIterations")]
-        public int solverVelocityIterationCount { get; set; }
-        //
         // 摘要:
         //     The solverVelocityIterations affects how how accurately Rigidbody joints and
         //     collision contacts are resolved. Overrides Physics.defaultSolverVelocityIterations.
@@ -23,12 +20,11 @@ namespace UnityEngine
         public int solverVelocityIterations { get; set; }
         //
         // 摘要:
-        //     The maximimum angular velocity of the rigidbody measured in radians per second.
-        //     (Default 7) range { 0, infinity }.
+        //     测量的刚体的最大角速度。
         public float maxAngularVelocity { get; set; }
         //
         // 摘要:
-        //     The mass-normalized energy threshold, below which objects start going to sleep.
+        //     能量阈值，低于该阈值对象开始进入睡眠状态。.
         public float sleepThreshold { get; set; }
         //
         // 摘要:
@@ -42,435 +38,184 @@ namespace UnityEngine
         public RigidbodyInterpolation interpolation { get; set; }
         //
         // 摘要:
-        //     The velocity vector of the rigidbody. It represents the rate of change of Rigidbody
-        //     position.
+        //     刚体的速度向量，它代表刚体的变化率
         public Vector3 velocity { get; set; }
         //
         // 摘要:
-        //     The angular velocity vector of the rigidbody measured in radians per second.
+        //     以弧度为单位测量的刚体的角速度矢量。
         public Vector3 angularVelocity { get; set; }
         //
         // 摘要:
-        //     The drag of the object.
+        //     物体的拖动力量.
         public float drag { get; set; }
         //
         // 摘要:
-        //     The angular drag of the object.
+        //     物体角度的拖动力.
         public float angularDrag { get; set; }
-        [Obsolete("Please use Rigidbody.solverIterations instead. (UnityUpgradable) -> solverIterations")]
-        public int solverIterationCount { get; set; }
-        //
         // 摘要:
-        //     The mass of the rigidbody.
+        //     刚体的质量。
         public float mass { get; set; }
         //
         // 摘要:
-        //     Maximum velocity of a rigidbody when moving out of penetrating state.
+        //    刚体脱离穿透状态时的最大速度。
         public float maxDepenetrationVelocity { get; set; }
         //
         // 摘要:
-        //     Controls whether physics affects the rigidbody.
+        //     控制物理是否影响刚体。
         public bool isKinematic { get; set; }
         //
         // 摘要:
-        //     Controls whether physics will change the rotation of the object.
+        //     控制物理是否会改变对象的旋转。
         public bool freezeRotation { get; set; }
         //
         // 摘要:
-        //     Controls which degrees of freedom are allowed for the simulation of this Rigidbody.
+        //      控制允许模拟此刚体的自由度。.
         public RigidbodyConstraints constraints { get; set; }
         //
         // 摘要:
-        //     The Rigidbody's collision detection mode.
+        //    Rigidbody 的碰撞检测模式。
         public CollisionDetectionMode collisionDetectionMode { get; set; }
         //
         // 摘要:
-        //     The center of mass relative to the transform's origin.
+        //     相对于变换原点的质心.
         public Vector3 centerOfMass { get; set; }
         //
         // 摘要:
-        //     The center of mass of the rigidbody in world space (Read Only).
+        //     刚体在世界空间中的质心（只读）。
         public Vector3 worldCenterOfMass { get; }
         //
         // 摘要:
-        //     The rotation of the inertia tensor.
+        //     惯性张量的旋转。
         public Quaternion inertiaTensorRotation { get; set; }
         //
         // 摘要:
-        //     The diagonal inertia tensor of mass relative to the center of mass.
+        //     质量相对于质心的对角惯性张量。
         public Vector3 inertiaTensor { get; set; }
         //
         // 摘要:
-        //     Should collision detection be enabled? (By default always enabled).
+        //     是否应该启用碰撞检测？（默认情况下始终启用）。
         public bool detectCollisions { get; set; }
         //
         // 摘要:
-        //     Controls whether gravity affects this rigidbody.
+        //     控制重力是否影响这个刚体。
         public bool useGravity { get; set; }
         //
         // 摘要:
-        //     The position of the rigidbody.
+        //    刚体的位置。
         public Vector3 position { get; set; }
         //
         // 摘要:
-        //     The rotation of the Rigidbody.
-        public Quaternion rotation { get; set; }
-        //
+        //     刚体的旋转。
+        public Quaternion rotation { get; set; }        
         // 摘要:
-        //     Force cone friction to be used for this rigidbody.
-        [Obsolete("Cone friction is no longer supported.")]
-        public bool useConeFriction { get; set; }
-        //
-        // 摘要:
-        //     The angular velocity below which objects start going to sleep. (Default 0.14)
-        //     range { 0, infinity }.
-        [Obsolete("The sleepAngularVelocity is no longer supported. Set Use sleepThreshold to specify energy.")]
-        public float sleepAngularVelocity { get; set; }
-        //
-        // 摘要:
-        //     The linear velocity below which objects start going to sleep. (Default 0.14)
-        //     range { 0, infinity }.
-        [Obsolete("The sleepVelocity is no longer supported. Use sleepThreshold. Note that sleepThreshold is energy but not velocity.")]
-        public float sleepVelocity { get; set; }
-
-        //
-        // 摘要:
-        //     Applies a force to a rigidbody that simulates explosion effects.
-        //
-        // 参数:
-        //   explosionForce:
-        //     The force of the explosion (which may be modified by distance).
-        //
-        //   explosionPosition:
-        //     The centre of the sphere within which the explosion has its effect.
-        //
-        //   explosionRadius:
-        //     The radius of the sphere within which the explosion has its effect.
-        //
-        //   upwardsModifier:
-        //     Adjustment to the apparent position of the explosion to make it seem to lift
-        //     objects.
-        //
-        //   mode:
-        //     The method used to apply the force to its targets.
+        //对模拟爆炸效果的刚体施加力。
         public void AddExplosionForce(float explosionForce, Vector3 explosionPosition, float explosionRadius, [DefaultValue("0.0f")] float upwardsModifier, [DefaultValue("ForceMode.Force)")] ForceMode mode);
         //
         // 摘要:
-        //     Applies a force to a rigidbody that simulates explosion effects.
-        //
-        // 参数:
-        //   explosionForce:
-        //     The force of the explosion (which may be modified by distance).
-        //
-        //   explosionPosition:
-        //     The centre of the sphere within which the explosion has its effect.
-        //
-        //   explosionRadius:
-        //     The radius of the sphere within which the explosion has its effect.
-        //
-        //   upwardsModifier:
-        //     Adjustment to the apparent position of the explosion to make it seem to lift
-        //     objects.
-        //
-        //   mode:
-        //     The method used to apply the force to its targets.
+        //     对模拟爆炸效果的刚体施加力。.
         [ExcludeFromDocs]
         public void AddExplosionForce(float explosionForce, Vector3 explosionPosition, float explosionRadius, float upwardsModifier);
         //
         // 摘要:
-        //     Applies a force to a rigidbody that simulates explosion effects.
-        //
-        // 参数:
-        //   explosionForce:
-        //     The force of the explosion (which may be modified by distance).
-        //
-        //   explosionPosition:
-        //     The centre of the sphere within which the explosion has its effect.
-        //
-        //   explosionRadius:
-        //     The radius of the sphere within which the explosion has its effect.
-        //
-        //   upwardsModifier:
-        //     Adjustment to the apparent position of the explosion to make it seem to lift
-        //     objects.
-        //
-        //   mode:
-        //     The method used to apply the force to its targets.
+        //     对模拟爆炸效果的刚体施加力。
         [ExcludeFromDocs]
         public void AddExplosionForce(float explosionForce, Vector3 explosionPosition, float explosionRadius);
         //
         // 摘要:
-        //     Adds a force to the Rigidbody.
-        //
-        // 参数:
-        //   force:
-        //     Force vector in world coordinates.
-        //
-        //   mode:
-        //     Type of force to apply.
+        //     向刚体添加一个力。
         public void AddForce(Vector3 force, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a force to the Rigidbody.
-        //
-        // 参数:
-        //   force:
-        //     Force vector in world coordinates.
-        //
-        //   mode:
-        //     Type of force to apply.
+        //     向刚体添加一个力
         [ExcludeFromDocs]
         public void AddForce(Vector3 force);
         //
         // 摘要:
-        //     Adds a force to the Rigidbody.
-        //
-        // 参数:
-        //   x:
-        //     Size of force along the world x-axis.
-        //
-        //   y:
-        //     Size of force along the world y-axis.
-        //
-        //   z:
-        //     Size of force along the world z-axis.
-        //
-        //   mode:
-        //     Type of force to apply.
+        //      向刚体添加一个力。
         public void AddForce(float x, float y, float z, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a force to the Rigidbody.
-        //
-        // 参数:
-        //   x:
-        //     Size of force along the world x-axis.
-        //
-        //   y:
-        //     Size of force along the world y-axis.
-        //
-        //   z:
-        //     Size of force along the world z-axis.
-        //
-        //   mode:
-        //     Type of force to apply.
+        //     向刚体添加一个力。
         [ExcludeFromDocs]
         public void AddForce(float x, float y, float z);
         //
         // 摘要:
-        //     Applies force at position. As a result this will apply a torque and force on
-        //     the object.
-        //
-        // 参数:
-        //   force:
-        //     Force vector in world coordinates.
-        //
-        //   position:
-        //     Position in world coordinates.
-        //
-        //   mode:
+        //     在位置施加力。结果，这将施加扭矩和力
         [ExcludeFromDocs]
         public void AddForceAtPosition(Vector3 force, Vector3 position);
         //
         // 摘要:
-        //     Applies force at position. As a result this will apply a torque and force on
-        //     the object.
-        //
-        // 参数:
-        //   force:
-        //     Force vector in world coordinates.
-        //
-        //   position:
-        //     Position in world coordinates.
-        //
-        //   mode:
+        //     在位置施加力。结果，这将施加扭矩和力
         public void AddForceAtPosition(Vector3 force, Vector3 position, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a force to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   force:
-        //     Force vector in local coordinates.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加一个力。
         [ExcludeFromDocs]
         public void AddRelativeForce(Vector3 force);
         //
         // 摘要:
-        //     Adds a force to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   force:
-        //     Force vector in local coordinates.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加一个力。
         public void AddRelativeForce(Vector3 force, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a force to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   x:
-        //     Size of force along the local x-axis.
-        //
-        //   y:
-        //     Size of force along the local y-axis.
-        //
-        //   z:
-        //     Size of force along the local z-axis.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加一个力。
         [ExcludeFromDocs]
         public void AddRelativeForce(float x, float y, float z);
         //
         // 摘要:
-        //     Adds a force to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   x:
-        //     Size of force along the local x-axis.
-        //
-        //   y:
-        //     Size of force along the local y-axis.
-        //
-        //   z:
-        //     Size of force along the local z-axis.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加一个力。
         public void AddRelativeForce(float x, float y, float z, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   torque:
-        //     Torque vector in local coordinates.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加扭矩。
         [ExcludeFromDocs]
         public void AddRelativeTorque(Vector3 torque);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   torque:
-        //     Torque vector in local coordinates.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加扭矩。
         public void AddRelativeTorque(Vector3 torque, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   x:
-        //     Size of torque along the local x-axis.
-        //
-        //   y:
-        //     Size of torque along the local y-axis.
-        //
-        //   z:
-        //     Size of torque along the local z-axis.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加扭矩。
         [ExcludeFromDocs]
         public void AddRelativeTorque(float x, float y, float z);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody relative to its coordinate system.
-        //
-        // 参数:
-        //   x:
-        //     Size of torque along the local x-axis.
-        //
-        //   y:
-        //     Size of torque along the local y-axis.
-        //
-        //   z:
-        //     Size of torque along the local z-axis.
-        //
-        //   mode:
+        //     相对于其坐标系向刚体添加扭矩。
         public void AddRelativeTorque(float x, float y, float z, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody.
-        //
-        // 参数:
-        //   x:
-        //     Size of torque along the world x-axis.
-        //
-        //   y:
-        //     Size of torque along the world y-axis.
-        //
-        //   z:
-        //     Size of torque along the world z-axis.
-        //
-        //   mode:
+        //     向刚体添加扭矩。
         [ExcludeFromDocs]
         public void AddTorque(float x, float y, float z);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody.
-        //
-        // 参数:
-        //   torque:
-        //     Torque vector in world coordinates.
-        //
-        //   mode:
+        //     向刚体添加扭矩。
         [ExcludeFromDocs]
         public void AddTorque(Vector3 torque);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody.
-        //
-        // 参数:
-        //   torque:
-        //     Torque vector in world coordinates.
-        //
-        //   mode:
+        //     向刚体添加扭矩。
         public void AddTorque(Vector3 torque, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     Adds a torque to the rigidbody.
-        //
-        // 参数:
-        //   x:
-        //     Size of torque along the world x-axis.
-        //
-        //   y:
-        //     Size of torque along the world y-axis.
-        //
-        //   z:
-        //     Size of torque along the world z-axis.
-        //
-        //   mode:
+        //    向刚体添加扭矩。
         public void AddTorque(float x, float y, float z, [DefaultValue("ForceMode.Force")] ForceMode mode);
         //
         // 摘要:
-        //     The closest point to the bounding box of the attached colliders.
-        //
-        // 参数:
-        //   position:
+        //     距离附加碰撞器的边界框最近的点。
         public Vector3 ClosestPointOnBounds(Vector3 position);
         //
         // 摘要:
-        //     The velocity of the rigidbody at the point worldPoint in global space.
-        //
-        // 参数:
-        //   worldPoint:
+        //     刚体在全局空间中的点 worldPoint 处的速度。
         public Vector3 GetPointVelocity(Vector3 worldPoint);
         //
         // 摘要:
-        //     The velocity relative to the rigidbody at the point relativePoint.
-        //
-        // 参数:
-        //   relativePoint:
+        //     在点relativePoint 处相对于刚体的速度。
         public Vector3 GetRelativePointVelocity(Vector3 relativePoint);
         //
         // 摘要:
-        //     Is the rigidbody sleeping?
+        //     刚体在休眠
         public bool IsSleeping();
         //
         // 摘要:
